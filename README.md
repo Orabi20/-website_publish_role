@@ -16,14 +16,14 @@ Website_Publish-role/
 
 ## ⚙️ Variables
 
-| Variable       | Description                          | Default                 |
-|----------------|--------------------------------------|-------------------------|
-| `custom_port`  | Port on which Apache should listen   | `88`                    |
+| Variable       | Description                          |
+|----------------|--------------------------------------|
+| `webserver_port`  | Port on which Apache should listen   |
 
 Set these in your playbook or inventory:
 
 ```yaml
-custom_port: 8080
+webserver_port: 88
 ```
 
 ## ▶️ How to Use
@@ -41,7 +41,7 @@ custom_port: 8080
   become: yes
 
   vars:
-    webserver_port: 8080
+    webserver_port: 88
 
   roles:
     - Website_Publish-role
@@ -49,14 +49,12 @@ custom_port: 8080
 
 3. Run the playbook:
    ```bash
-   ansible-playbook -i hosts site.yml
+   ansible-navigator run -m stdout site.yml --pae=false 
    ```
 
 ## 🛠️ Prerequisites
 
 - Red Hat-based system (e.g., RHEL, CentOS)
-- Apache not running on the default/custom port
-- Ansible installed and configured
 
 ## 🧑‍💻 Author
 
