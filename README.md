@@ -41,7 +41,7 @@ custom_port: 8080
   become: yes
 
   vars:
-    custom_port: 8080
+    webserver_port: 8080
 
   roles:
     - Website_Publish-role
