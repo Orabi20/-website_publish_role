@@ -1,38 +1,63 @@
-Role Name
-=========
+# 📡 Website_Publish-role
 
-A brief description of the role goes here.
+This Ansible role installs and configures an Apache web server on Red Hat-based systems. It sets a custom port and serves a basic web page with user-defined content.
 
-Requirements
-------------
+## 📁 Role Structure
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+```
+Website_Publish-role/
+├── defaults/
+│   └── main.yml
+├── tasks/
+│   └── main.yml
+├── templates/
+│   └── index.html.j2
+```
 
-Role Variables
---------------
+## ⚙️ Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable       | Description                          | Default                 |
+|----------------|--------------------------------------|-------------------------|
+| `custom_port`  | Port on which Apache should listen   | `88`                    |
 
-Dependencies
-------------
+Set these in your playbook or inventory:
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```yaml
+custom_port: 8080
+```
 
-Example Playbook
-----------------
+## ▶️ How to Use
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+1. Extract the role:
+   ```bash
+   tar -xzvf Website_Publish-role.tar.gz
+   ```
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+2. Use it in your playbook:
 
-License
--------
+```yaml
+- name: Deploy custom website
+  hosts: webservers
+  become: yes
 
-BSD
+  vars:
+    custom_port: 8080
 
-Author Information
-------------------
+  roles:
+    - Website_Publish-role
+```
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+3. Run the playbook:
+   ```bash
+   ansible-playbook -i hosts site.yml
+   ```
+
+## 🛠️ Prerequisites
+
+- Red Hat-based system (e.g., RHEL, CentOS)
+- Apache not running on the default/custom port
+- Ansible installed and configured
+
+## 🧑‍💻 Author
+
+Ahmed Orabi
